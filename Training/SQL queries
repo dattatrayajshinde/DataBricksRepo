@@ -1,0 +1,81 @@
+/*SYNTAX:
+CREATE TABLE tableName(
+    columnName datatype,
+    columnName datatype
+)
+COMMNET 'comment describig tbale purpose'
+TBLPROPERTIES(quality= value)
+using delta
+*/
+
+USE CATALOG training_cat;
+USE schema jan2025_batch;
+
+
+CREATE TABLE my_table(
+id INT,
+name STRING,
+email STRING,
+created_at TIMESTAMP
+) USING delta
+comment 'this is a table for storing customer data'
+TBLPROPERTIES ( 'quality' = 'gold')
+ 
+;
+
+
+
+
+CREATE TABLE training_cat.jan2025_batch.my_Training_table2(
+id INT,
+name STRING,
+email STRING,
+created_at TIMESTAMP
+) USING delta
+comment 'this is a table for storing customer data'
+TBLPROPERTIES ( 'quality' = 'gold')
+ 
+;
+
+/* SYNTAX :
+INSERT INTO datlogname.schemaname.tablename (column names)
+VALUES(values)
+
+*/
+
+select * from my_table
+select * from training_cat.jan2025_batch.my_Training_table2
+
+--INSERT query 
+
+INSERT INTO my_table (id, name, email, created_at) VALUES
+(1, 'Alice Johnson', 'alice.johnson@example.com', CURRENT_TIMESTAMP()),
+(2, 'Bob Smith', 'bob.smith@example.com', CURRENT_TIMESTAMP()),
+(3, 'Charlie Davis', 'charlie.davis@example.com', CURRENT_TIMESTAMP()),
+(4, 'David White', 'david.white@example.com', CURRENT_TIMESTAMP()),
+(5, 'Emma Brown', 'emma.brown@example.com', CURRENT_TIMESTAMP()),
+(6, 'Frank Harris', 'frank.harris@example.com', CURRENT_TIMESTAMP()),
+(7, 'Grace Lee', 'grace.lee@example.com', CURRENT_TIMESTAMP()),
+(8, 'Henry Adams', 'henry.adams@example.com', CURRENT_TIMESTAMP()),
+(9, 'Ivy Clark', 'ivy.clark@example.com', CURRENT_TIMESTAMP()),
+(10, 'Jack Wilson', 'jack.wilson@example.com', CURRENT_TIMESTAMP());
+
+
+INSERT INTO training_cat.jan2025_batch.my_Training_table2
+ (id, name, email, created_at) 
+ VALUES
+(1, 'Alice Johnson', 'alice.johnson@example.com', CURRENT_TIMESTAMP()),
+(2, 'Bob Smith', 'bob.smith@example.com', CURRENT_TIMESTAMP()),
+(3, 'Charlie Davis', 'charlie.davis@example.com', CURRENT_TIMESTAMP()),
+(4, 'David White', 'david.white@example.com', CURRENT_TIMESTAMP()),
+(5, 'Emma Brown', 'emma.brown@example.com', CURRENT_TIMESTAMP()),
+(6, 'Frank Harris', 'frank.harris@example.com', CURRENT_TIMESTAMP()),
+(7, 'Grace Lee', 'grace.lee@example.com', CURRENT_TIMESTAMP()),
+(8, 'Henry Adams', 'henry.adams@example.com', CURRENT_TIMESTAMP()),
+(9, 'Ivy Clark', 'ivy.clark@example.com', CURRENT_TIMESTAMP()),
+(10, 'Jack Wilson', 'jack.wilson@example.com', CURRENT_TIMESTAMP());
+
+
+
+select   * from my_table order by name limit 5;
+select * from training_cat.jan2025_batch.my_Training_table2;
